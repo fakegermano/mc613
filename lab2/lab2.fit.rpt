@@ -1,5 +1,5 @@
 Fitter report for lab2
-Wed Mar 14 14:03:21 2018
+Wed Mar 14 17:40:50 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -58,7 +58,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Fitter Summary                                                                ;
 +---------------------------------+---------------------------------------------+
-; Fitter Status                   ; Successful - Wed Mar 14 14:03:21 2018       ;
+; Fitter Status                   ; Successful - Wed Mar 14 17:40:50 2018       ;
 ; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; lab2                                        ;
 ; Top-level Entity Name           ; bin2hex                                     ;
@@ -2646,7 +2646,7 @@ Warning (15705): Ignored locations or region assignments to the following nodes
     Warning (15706): Node "VGA_R[7]" is assigned to location or region, but does not exist in design
     Warning (15706): Node "VGA_SYNC_N" is assigned to location or region, but does not exist in design
     Warning (15706): Node "VGA_VS" is assigned to location or region, but does not exist in design
-Info (11798): Fitter preparation operations ending: elapsed time is 00:00:11
+Info (11798): Fitter preparation operations ending: elapsed time is 00:00:10
 Info (332104): Reading SDC File: 'DE1_SoC_design_constraints.sdc'
 Warning (332174): Ignored filter at DE1_SoC_design_constraints.sdc(9): CLOCK_50 could not be matched with a port File: /home/ec2013/ra145767/Documents/mc613/lab2/DE1_SoC_design_constraints.sdc Line: 9
 Warning (332049): Ignored create_clock at DE1_SoC_design_constraints.sdc(9): Argument <targets> is an empty collection File: /home/ec2013/ra145767/Documents/mc613/lab2/DE1_SoC_design_constraints.sdc Line: 9
@@ -2809,19 +2809,19 @@ Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
-Info (11888): Total time spent on timing analysis during the Fitter is 0.10 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.09 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:03
+Info (11801): Fitter post-fit operations ending: elapsed time is 00:00:02
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Info (144001): Generated suppressed messages file /home/ec2013/ra145767/Documents/mc613/lab2/lab2.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 360 warnings
-    Info: Peak virtual memory: 2514 megabytes
-    Info: Processing ended: Wed Mar 14 14:03:21 2018
-    Info: Elapsed time: 00:00:27
-    Info: Total CPU time (on all processors): 00:00:44
+    Info: Peak virtual memory: 2505 megabytes
+    Info: Processing ended: Wed Mar 14 17:40:51 2018
+    Info: Elapsed time: 00:00:29
+    Info: Total CPU time (on all processors): 00:00:42
 
 
 +----------------------------+

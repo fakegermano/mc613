@@ -7,6 +7,8 @@ entity xbar_v2 is
 end xbar_v2;
 
 architecture rtl of xbar_v2 is
-  -- add your code
+begin
+	y1 <= x2 when s = '1' else x1;
+	y2 <= x1 when s = '1' else x2;
 end rtl;
 

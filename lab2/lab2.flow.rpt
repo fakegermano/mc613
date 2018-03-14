@@ -1,5 +1,5 @@
 Flow report for lab2
-Wed Mar 14 14:03:34 2018
+Wed Mar 14 17:41:03 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Flow Summary                                                                  ;
 +---------------------------------+---------------------------------------------+
-; Flow Status                     ; Successful - Wed Mar 14 14:03:34 2018       ;
+; Flow Status                     ; Successful - Wed Mar 14 17:41:03 2018       ;
 ; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; lab2                                        ;
 ; Top-level Entity Name           ; bin2hex                                     ;
@@ -67,7 +67,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/14/2018 14:02:44 ;
+; Start date & time ; 03/14/2018 17:40:10 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; lab2                ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 273440552276240.152104696412332        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 273440552276240.152106001026659        ; --            ; --          ; --         ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)              ; <None>        ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
@@ -96,12 +96,12 @@ refer to the applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:09     ; 1.0                     ; 1144 MB             ; 00:00:20                           ;
-; Fitter                    ; 00:00:27     ; 1.0                     ; 2514 MB             ; 00:00:44                           ;
-; Assembler                 ; 00:00:06     ; 1.0                     ; 1089 MB             ; 00:00:05                           ;
-; TimeQuest Timing Analyzer ; 00:00:05     ; 1.0                     ; 1307 MB             ; 00:00:04                           ;
-; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1258 MB             ; 00:00:01                           ;
-; Total                     ; 00:00:48     ; --                      ; --                  ; 00:01:14                           ;
+; Analysis & Synthesis      ; 00:00:10     ; 1.0                     ; 1144 MB             ; 00:00:21                           ;
+; Fitter                    ; 00:00:28     ; 1.0                     ; 2505 MB             ; 00:00:42                           ;
+; Assembler                 ; 00:00:05     ; 1.0                     ; 1098 MB             ; 00:00:05                           ;
+; TimeQuest Timing Analyzer ; 00:00:04     ; 1.0                     ; 1307 MB             ; 00:00:04                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 1259 MB             ; 00:00:01                           ;
+; Total                     ; 00:00:48     ; --                      ; --                  ; 00:01:13                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

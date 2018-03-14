@@ -7,6 +7,16 @@ entity xbar_v3 is
 end xbar_v3;
 
 architecture rtl of xbar_v3 is
-  -- add your code
+begin
+	process (x1, x2, s)
+	begin
+		if s = '1' then
+			y1 <= x2;
+			y2 <= x1;
+		else 
+			y1 <= x1;
+			y2 <= x2;
+		end if ;
+	end process;
 end rtl;
 
