@@ -1,0 +1,7 @@
+{
+	"common_dir" : "/home/ibfelzmann/Quartus/demo_library/",
+	"acds_version" : "Version 17.1.0",
+	"platform" : "linux",
+	"os" : "Ubuntu 16.04.4",
+	"qpf" : "demo_library.qpf"
+}
