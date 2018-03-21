@@ -12,5 +12,6 @@ end full_adder;
 
 architecture structural of full_adder is
 begin
-  -- add your code
+  r <= x XOR y XOR cin;
+  cout <= (x AND y) OR (x AND cin) OR (y AND cin);
 end structural;

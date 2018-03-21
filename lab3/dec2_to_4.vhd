@@ -7,7 +7,20 @@ entity dec2_to_4 is
 end dec2_to_4;
 
 architecture rtl of dec2_to_4 is
+	signal input: std_logic_vector(0 to 2);
 begin
-  -- add your code
+	input <= w0 & w1 & en;
+	with input select
+		y0 <= '1' when "001",
+				'0' when others;
+	with input select
+		y1 <= '1' when "101",
+				'0' when others;
+	with input select
+		y2 <= '1' when "011",
+				'0' when others;
+	with input select
+		y3 <= '1' when "111",
+				'0' when others;	
 end rtl;
 

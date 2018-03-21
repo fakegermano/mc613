@@ -16,7 +16,7 @@ architecture rtl of xbar_gen is
 begin
 	tmpv(0) <= '1';
 	tmpg(0) <= '0';
-	gerador: for i in 0 to n-1 generate
+	gerador: for i in 0 to N-1 generate
 		stage: xbar_v2 port map (tmpv(i), tmpg(i), s(i), tmpv(i+1), tmpg(i+1));
 	end generate;
 	y1 <= tmpv(N);

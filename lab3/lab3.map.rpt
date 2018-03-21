@@ -1,5 +1,5 @@
 Analysis & Synthesis report for lab3
-Wed Mar 14 17:50:58 2018
+Wed Mar 21 16:59:41 2018
 Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
 
 
@@ -14,12 +14,10 @@ Quartus Prime Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Parameter Settings for User Entity Instance: xbar_gen:instance
- 10. Port Connectivity Checks: "xbar_gen:instance|xbar_v2:\gerador:0:stage"
- 11. Port Connectivity Checks: "xbar_gen:instance"
- 12. Post-Synthesis Netlist Statistics for Top Partition
- 13. Elapsed Time Per Partition
- 14. Analysis & Synthesis Messages
+  9. Port Connectivity Checks: "mux4_to_1:\gerador:0:muxes|dec2_to_4:decod"
+ 10. Post-Synthesis Netlist Statistics for Top Partition
+ 11. Elapsed Time Per Partition
+ 12. Analysis & Synthesis Messages
 
 
 
@@ -45,14 +43,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Wed Mar 14 17:50:58 2018       ;
+; Analysis & Synthesis Status     ; Successful - Wed Mar 21 16:59:41 2018       ;
 ; Quartus Prime Version           ; 17.1.0 Build 590 10/25/2017 SJ Lite Edition ;
 ; Revision Name                   ; lab3                                        ;
-; Top-level Entity Name           ; xbar_stage_5                                ;
+; Top-level Entity Name           ; mux16_to_1                                  ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
 ; Total registers                 ; 0                                           ;
-; Total pins                      ; 6                                           ;
+; Total pins                      ; 21                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 0                                           ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -71,7 +69,7 @@ refer to the applicable agreement for further details.
 ; Option                                                                          ; Setting            ; Default Value      ;
 +---------------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
-; Top-level entity name                                                           ; xbar_stage_5       ; lab3               ;
+; Top-level entity name                                                           ; mux16_to_1         ; lab3               ;
 ; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
 ; Use smart compilation                                                           ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
@@ -168,53 +166,54 @@ refer to the applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                       ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                                ; Library ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
-; xbar_v2.vhd                      ; yes             ; User VHDL File  ; /home/ec2013/ra145767/Documents/mc613/lab3/xbar_v2.vhd      ;         ;
-; xbar_stage_5.vhd                 ; yes             ; User VHDL File  ; /home/ec2013/ra145767/Documents/mc613/lab3/xbar_stage_5.vhd ;         ;
-; xbar_gen.vhd                     ; yes             ; User VHDL File  ; /home/ec2013/ra145767/Documents/mc613/lab3/xbar_gen.vhd     ;         ;
-+----------------------------------+-----------------+-----------------+-------------------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                      ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                               ; Library ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------+---------+
+; mux16_to_1.vhd                   ; yes             ; User VHDL File  ; /home/ec2013/ra145767/Documents/mc613/lab3/mux16_to_1.vhd  ;         ;
+; mux4_to_1.vhd                    ; yes             ; User VHDL File  ; /home/ec2013/ra145767/Documents/mc613/lab3/mux4_to_1.vhd   ;         ;
+; extra_logic.vhd                  ; yes             ; User VHDL File  ; /home/ec2013/ra145767/Documents/mc613/lab3/extra_logic.vhd ;         ;
+; dec2_to_4.vhd                    ; yes             ; User VHDL File  ; /home/ec2013/ra145767/Documents/mc613/lab3/dec2_to_4.vhd   ;         ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                                                   ;
-+---------------------------------------------+-------------------------------------------------+
-; Resource                                    ; Usage                                           ;
-+---------------------------------------------+-------------------------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 1                                               ;
-;                                             ;                                                 ;
-; Combinational ALUT usage for logic          ; 1                                               ;
-;     -- 7 input functions                    ; 0                                               ;
-;     -- 6 input functions                    ; 0                                               ;
-;     -- 5 input functions                    ; 1                                               ;
-;     -- 4 input functions                    ; 0                                               ;
-;     -- <=3 input functions                  ; 0                                               ;
-;                                             ;                                                 ;
-; Dedicated logic registers                   ; 0                                               ;
-;                                             ;                                                 ;
-; I/O pins                                    ; 6                                               ;
-;                                             ;                                                 ;
-; Total DSP Blocks                            ; 0                                               ;
-;                                             ;                                                 ;
-; Maximum fan-out node                        ; xbar_gen:instance|xbar_v2:\gerador:4:stage|y1~0 ;
-; Maximum fan-out                             ; 1                                               ;
-; Total fan-out                               ; 12                                              ;
-; Average fan-out                             ; 0.92                                            ;
-+---------------------------------------------+-------------------------------------------------+
++------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                ;
++---------------------------------------------+--------------+
+; Resource                                    ; Usage        ;
++---------------------------------------------+--------------+
+; Estimate of Logic utilization (ALMs needed) ; 6            ;
+;                                             ;              ;
+; Combinational ALUT usage for logic          ; 9            ;
+;     -- 7 input functions                    ; 2            ;
+;     -- 6 input functions                    ; 0            ;
+;     -- 5 input functions                    ; 3            ;
+;     -- 4 input functions                    ; 0            ;
+;     -- <=3 input functions                  ; 4            ;
+;                                             ;              ;
+; Dedicated logic registers                   ; 0            ;
+;                                             ;              ;
+; I/O pins                                    ; 21           ;
+;                                             ;              ;
+; Total DSP Blocks                            ; 0            ;
+;                                             ;              ;
+; Maximum fan-out node                        ; sel[3]~input ;
+; Maximum fan-out                             ; 8            ;
+; Total fan-out                               ; 63           ;
+; Average fan-out                             ; 1.24         ;
++---------------------------------------------+--------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                ;
-+----------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+--------------+--------------+
-; Compilation Hierarchy Node       ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                      ; Entity Name  ; Library Name ;
-+----------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+--------------+--------------+
-; |xbar_stage_5                    ; 1 (0)               ; 0 (0)                     ; 0                 ; 0          ; 6    ; 0            ; |xbar_stage_5                                            ; xbar_stage_5 ; work         ;
-;    |xbar_gen:instance|           ; 1 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |xbar_stage_5|xbar_gen:instance                          ; xbar_gen     ; work         ;
-;       |xbar_v2:\gerador:4:stage| ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |xbar_stage_5|xbar_gen:instance|xbar_v2:\gerador:4:stage ; xbar_v2      ; work         ;
-+----------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------+--------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                  ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                               ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------+-------------+--------------+
+; |mux16_to_1                ; 9 (0)               ; 0 (0)                     ; 0                 ; 0          ; 21   ; 0            ; |mux16_to_1                                       ; mux16_to_1  ; work         ;
+;    |mux4_to_1:mux_final|   ; 9 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |mux16_to_1|mux4_to_1:mux_final                   ; mux4_to_1   ; work         ;
+;       |extra_logic:extra|  ; 9 (9)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |mux16_to_1|mux4_to_1:mux_final|extra_logic:extra ; extra_logic ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+---------------------------------------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -233,33 +232,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+----------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: xbar_gen:instance ;
-+----------------+-------+---------------------------------------+
-; Parameter Name ; Value ; Type                                  ;
-+----------------+-------+---------------------------------------+
-; n              ; 5     ; Signed Integer                        ;
-+----------------+-------+---------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
 +------------------------------------------------------------------------+
-; Port Connectivity Checks: "xbar_gen:instance|xbar_v2:\gerador:0:stage" ;
+; Port Connectivity Checks: "mux4_to_1:\gerador:0:muxes|dec2_to_4:decod" ;
 +------+-------+----------+----------------------------------------------+
 ; Port ; Type  ; Severity ; Details                                      ;
 +------+-------+----------+----------------------------------------------+
-; x1   ; Input ; Info     ; Stuck at VCC                                 ;
-; x2   ; Input ; Info     ; Stuck at GND                                 ;
+; en   ; Input ; Info     ; Stuck at VCC                                 ;
 +------+-------+----------+----------------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "xbar_gen:instance"                                                                  ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                             ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
-; y2   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -267,14 +246,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_lcell_comb     ; 2                           ;
-;     normal            ; 2                           ;
-;         1 data inputs ; 1                           ;
-;         5 data inputs ; 1                           ;
-; boundary_port         ; 6                           ;
+; arriav_lcell_comb     ; 9                           ;
+;     extend            ; 2                           ;
+;         7 data inputs ; 2                           ;
+;     normal            ; 7                           ;
+;         3 data inputs ; 4                           ;
+;         5 data inputs ; 3                           ;
+; boundary_port         ; 21                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 2.00                        ;
-; Average LUT depth     ; 2.00                        ;
+; Max LUT depth         ; 3.00                        ;
+; Average LUT depth     ; 2.52                        ;
 +-----------------------+-----------------------------+
 
 
@@ -283,7 +264,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -293,7 +274,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-    Info: Processing started: Wed Mar 14 17:50:49 2018
+    Info: Processing started: Wed Mar 21 16:59:30 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab3 -c lab3
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -316,31 +297,32 @@ Info (12021): Found 2 design units, including 1 entities, in source file xbar_ge
     Info (12022): Found design unit 1: xbar_gen-rtl File: /home/ec2013/ra145767/Documents/mc613/lab3/xbar_gen.vhd Line: 10
     Info (12023): Found entity 1: xbar_gen File: /home/ec2013/ra145767/Documents/mc613/lab3/xbar_gen.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file mux16_to_1.vhd
-    Info (12022): Found design unit 1: mux16_to_1-rtl File: /home/ec2013/ra145767/Documents/mc613/lab3/mux16_to_1.vhd Line: 10
-    Info (12023): Found entity 1: mux16_to_1 File: /home/ec2013/ra145767/Documents/mc613/lab3/mux16_to_1.vhd Line: 4
+    Info (12022): Found design unit 1: mux16_to_1-rtl File: /home/ec2013/ra145767/Documents/mc613/lab3/mux16_to_1.vhd Line: 11
+    Info (12023): Found entity 1: mux16_to_1 File: /home/ec2013/ra145767/Documents/mc613/lab3/mux16_to_1.vhd Line: 5
 Info (12021): Found 2 design units, including 1 entities, in source file mux4_to_1.vhd
-    Info (12022): Found design unit 1: mux4_to_1-rtl File: /home/ec2013/ra145767/Documents/mc613/lab3/mux4_to_1.vhd Line: 10
-    Info (12023): Found entity 1: mux4_to_1 File: /home/ec2013/ra145767/Documents/mc613/lab3/mux4_to_1.vhd Line: 4
+    Info (12022): Found design unit 1: mux4_to_1-rtl File: /home/ec2013/ra145767/Documents/mc613/lab3/mux4_to_1.vhd Line: 12
+    Info (12023): Found entity 1: mux4_to_1 File: /home/ec2013/ra145767/Documents/mc613/lab3/mux4_to_1.vhd Line: 6
 Info (12021): Found 2 design units, including 1 entities, in source file extra_logic.vhd
     Info (12022): Found design unit 1: extra_logic-rtl File: /home/ec2013/ra145767/Documents/mc613/lab3/extra_logic.vhd Line: 10
     Info (12023): Found entity 1: extra_logic File: /home/ec2013/ra145767/Documents/mc613/lab3/extra_logic.vhd Line: 4
 Info (12021): Found 2 design units, including 1 entities, in source file dec2_to_4.vhd
     Info (12022): Found design unit 1: dec2_to_4-rtl File: /home/ec2013/ra145767/Documents/mc613/lab3/dec2_to_4.vhd Line: 9
     Info (12023): Found entity 1: dec2_to_4 File: /home/ec2013/ra145767/Documents/mc613/lab3/dec2_to_4.vhd Line: 4
-Info (12127): Elaborating entity "xbar_stage_5" for the top level hierarchy
-Info (12128): Elaborating entity "xbar_gen" for hierarchy "xbar_gen:instance" File: /home/ec2013/ra145767/Documents/mc613/lab3/xbar_stage_5.vhd Line: 12
-Info (12128): Elaborating entity "xbar_v2" for hierarchy "xbar_gen:instance|xbar_v2:\gerador:0:stage" File: /home/ec2013/ra145767/Documents/mc613/lab3/xbar_gen.vhd Line: 20
+Info (12127): Elaborating entity "mux16_to_1" for the top level hierarchy
+Info (12128): Elaborating entity "mux4_to_1" for hierarchy "mux4_to_1:\gerador:0:muxes" File: /home/ec2013/ra145767/Documents/mc613/lab3/mux16_to_1.vhd Line: 15
+Info (12128): Elaborating entity "dec2_to_4" for hierarchy "mux4_to_1:\gerador:0:muxes|dec2_to_4:decod" File: /home/ec2013/ra145767/Documents/mc613/lab3/mux4_to_1.vhd Line: 15
+Info (12128): Elaborating entity "extra_logic" for hierarchy "mux4_to_1:\gerador:0:muxes|extra_logic:extra" File: /home/ec2013/ra145767/Documents/mc613/lab3/mux4_to_1.vhd Line: 17
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 7 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 5 input pins
+Info (21057): Implemented 30 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 20 input pins
     Info (21059): Implemented 1 output pins
-    Info (21061): Implemented 1 logic cells
+    Info (21061): Implemented 9 logic cells
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 1163 megabytes
-    Info: Processing ended: Wed Mar 14 17:50:58 2018
-    Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:20
+    Info: Peak virtual memory: 1169 megabytes
+    Info: Processing ended: Wed Mar 21 16:59:41 2018
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:21
 
 

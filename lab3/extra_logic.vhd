@@ -9,6 +9,6 @@ end extra_logic;
 
 architecture rtl of extra_logic is
 begin
-  -- add your code
+  f <= (w0 AND y0) OR (w1 AND y1) OR (w2 AND y2) OR (w3 AND y3);
 end rtl;
 
