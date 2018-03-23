@@ -22,7 +22,7 @@ begin
 	b_sum <= NOT b when sel = "01" else b;
 	sum_work: ripple_carry
 		generic map (N => 4)
-		port map (x => a, y => b_sum, r => sum_r, cout => carry_sum, overflow => over_sum, cin => sel(1));
+		port map (x => a, y => b_sum, r => sum_r, cout => carry_sum, overflow => over_sum, cin => sel(0));
 	and_work: and_r <= a AND b;
 	or_work: or_r <= a OR b;
 	with sel select
@@ -36,14 +36,7 @@ begin
 		Z <= 	zero_and when "10",
 				zero_or when "11",
 				zero_sum when others;
-	with sel select
-		C <= 	carry_sum when "00",
-				'0' when others;
-	with sel select
-		V <= 	over_sum when "00",
-				'0' when others;
-	with sel select
-		N <= 	and_r(3) when "10",
-				or_r(3) when "11",
-				sum_r(3) when others;
+	C <= carry_sum when sel(1) = '0' else '0';
+	V <= over_sum when sel(1) = '0' else '0';
+	N <= sum_r(3) when sel(1) = '0' else '0';
 end behavioral;
