@@ -1,0 +1,12 @@
+4 bits:
+cla 7.778 de cin ate sum(2)
+ripple 8.070 de x(1) ate sum(3)
+
+a CLA tem o menor tempo
+
+8 bits:
+ripple_carry 13.289 de y(0) ate cout
+cla_partial 12.744 de y(3) ate sum(6)
+cla 8.902 de y(0) ate cout
+
+o CLA tem também o menor tempo, observa-se que o tempo da CLA de 8 bits se assemelhou ao tempo do ripple carry de 4 bits!!

@@ -4,7 +4,7 @@ use work.full_adder;
 
 entity ripple_carry is
   generic (
-    N : integer := 4
+    N : integer := 8
   );
   port (
     x,y : in std_logic_vector(N-1 downto 0);
