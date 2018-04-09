@@ -16,12 +16,13 @@ end reg;
 
 architecture rtl of reg is
 begin
-	process (clear, clk)
+	process (clear, clk, load)
 		variable data : std_logic_vector(N-1 downto 0);
 	begin
 		if clear = '0' then
 			data := (others => '0');
-		elsif clk'EVENT AND clk = '1' AND load = '1' then data := data_in;
+		elsif clk'EVENT AND clk = '1' AND load = '1' then 
+			data := data_in;
 		end if;
 		data_out <= data;
 	end process;
