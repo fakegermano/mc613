@@ -4,12 +4,20 @@ use ieee.std_logic_1164.all;
 entity code_to_asci is
 	port (
 		scancode : in std_logic_vector(15 downto 0);
+		upper: in std_logic;
 		asci: out std_logic_vector(7 downto 0)
 	);
 end code_to_asci;
 
 architecture decoder of code_to_asci is
 	signal decoded: std_logic_vector(7 downto 0);
+	signal num: std_logic;
+	component is_num
+		port (
+			asci: in std_logic_vector(7 downto 0);
+			res: out std_logic
+		);
+	end component;
 begin
 	with scancode(7 downto 0) select
 		decoded <= 	"01100001" when x"1C", -- a
@@ -59,7 +67,7 @@ begin
 						"00111000" when x"75", -- N8
 						"00111001" when x"7D", -- N9
 						"00000000" when others;
-	with scancode(15) select
-		asci <= 	decoded XOR "00100000" when '1',
-					decoded when others;
+	is_it_num: is_num port map (asci => decoded, res => num);
+	asci <= 	decoded XOR "00100000" when num = '0' AND upper = '1' else
+				decoded;
 end decoder;
