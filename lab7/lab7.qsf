@@ -18,14 +18,14 @@
 #
 # Quartus Prime
 # Version 17.1.0 Build 590 10/25/2017 SJ Lite Edition
-# Date created = 13:42:41  April 04, 2018
+# Date created = 21:08:11  April 11, 2018
 #
 # -------------------------------------------------------------------------- #
 #
 # Notes:
 #
 # 1) The default values for assignments are stored in the file:
-#		lab6_assignment_defaults.qdf
+#		lab7_assignment_defaults.qdf
 #    If this file doesn't exist, see file:
 #		assignment_defaults.qdf
 #
@@ -38,10 +38,15 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY kbd_alphanum_board
+set_global_assignment -name TOP_LEVEL_ENTITY shift_register_board
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.1.0
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:42:41  APRIL 04, 2018"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "21:08:11  APRIL 11, 2018"
 set_global_assignment -name LAST_QUARTUS_VERSION "17.1.0 Lite Edition"
+set_global_assignment -name VHDL_FILE shift_register_board.vhd
+set_global_assignment -name VHDL_FILE shift_register.vhd
+set_global_assignment -name VHDL_FILE clock_board.vhd
+set_global_assignment -name VHDL_FILE clock.vhd
+set_global_assignment -name VHDL_FILE clk_div.vhd
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -49,44 +54,9 @@ set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-
-#============================================================
-# HEX0
-#============================================================
-set_location_assignment PIN_AE26 -to HEX0[0]
-set_location_assignment PIN_AE27 -to HEX0[1]
-set_location_assignment PIN_AE28 -to HEX0[2]
-set_location_assignment PIN_AG27 -to HEX0[3]
-set_location_assignment PIN_AF28 -to HEX0[4]
-set_location_assignment PIN_AG28 -to HEX0[5]
-set_location_assignment PIN_AH28 -to HEX0[6]
-
-#============================================================
-# KEY
-#============================================================
-set_location_assignment PIN_AA14 -to KEY[0]
-set_location_assignment PIN_AA15 -to KEY[1]
-set_location_assignment PIN_W15 -to KEY[2]
-set_location_assignment PIN_Y16 -to KEY[3]
-
-#============================================================
-# SW
-#============================================================
-set_location_assignment PIN_AB12 -to SW[0]
-set_location_assignment PIN_AC12 -to SW[1]
-set_location_assignment PIN_AF9 -to SW[2]
-set_location_assignment PIN_AF10 -to SW[3]
-set_location_assignment PIN_AD11 -to SW[4]
-set_location_assignment PIN_AD12 -to SW[5]
-set_location_assignment PIN_AE11 -to SW[6]
-set_location_assignment PIN_AC9 -to SW[7]
-set_location_assignment PIN_AD10 -to SW[8]
-set_location_assignment PIN_AE12 -to SW[9]
-
-
-
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_AJ4 -to ADC_CS_N
 set_location_assignment PIN_AK4 -to ADC_DIN
 set_location_assignment PIN_AK3 -to ADC_DOUT
@@ -215,6 +185,13 @@ set_location_assignment PIN_AE24 -to GPIO_1[6]
 set_location_assignment PIN_AF25 -to GPIO_1[7]
 set_location_assignment PIN_AF26 -to GPIO_1[8]
 set_location_assignment PIN_AG25 -to GPIO_1[9]
+set_location_assignment PIN_AE26 -to HEX0[0]
+set_location_assignment PIN_AE27 -to HEX0[1]
+set_location_assignment PIN_AE28 -to HEX0[2]
+set_location_assignment PIN_AG27 -to HEX0[3]
+set_location_assignment PIN_AF28 -to HEX0[4]
+set_location_assignment PIN_AG28 -to HEX0[5]
+set_location_assignment PIN_AH28 -to HEX0[6]
 set_location_assignment PIN_AJ29 -to HEX1[0]
 set_location_assignment PIN_AH29 -to HEX1[1]
 set_location_assignment PIN_AH30 -to HEX1[2]
@@ -252,6 +229,10 @@ set_location_assignment PIN_AA26 -to HEX5[5]
 set_location_assignment PIN_AA25 -to HEX5[6]
 set_location_assignment PIN_AA30 -to IRDA_RXD
 set_location_assignment PIN_AB30 -to IRDA_TXD
+set_location_assignment PIN_AA14 -to KEY[0]
+set_location_assignment PIN_AA15 -to KEY[1]
+set_location_assignment PIN_W15 -to KEY[2]
+set_location_assignment PIN_Y16 -to KEY[3]
 set_location_assignment PIN_V16 -to LEDR[0]
 set_location_assignment PIN_W16 -to LEDR[1]
 set_location_assignment PIN_V17 -to LEDR[2]
@@ -266,6 +247,16 @@ set_location_assignment PIN_AD7 -to PS2_CLK
 set_location_assignment PIN_AE7 -to PS2_DAT
 set_location_assignment PIN_AD9 -to PS2_CLK2
 set_location_assignment PIN_AE9 -to PS2_DAT2
+set_location_assignment PIN_AB12 -to SW[0]
+set_location_assignment PIN_AC12 -to SW[1]
+set_location_assignment PIN_AF9 -to SW[2]
+set_location_assignment PIN_AF10 -to SW[3]
+set_location_assignment PIN_AD11 -to SW[4]
+set_location_assignment PIN_AD12 -to SW[5]
+set_location_assignment PIN_AE11 -to SW[6]
+set_location_assignment PIN_AC9 -to SW[7]
+set_location_assignment PIN_AD10 -to SW[8]
+set_location_assignment PIN_AE12 -to SW[9]
 set_location_assignment PIN_H15 -to TD_CLK27
 set_location_assignment PIN_D2 -to TD_DATA[0]
 set_location_assignment PIN_B1 -to TD_DATA[1]
@@ -324,17 +315,4 @@ set_location_assignment PIN_E12 -to VGA_R[6]
 set_location_assignment PIN_F13 -to VGA_R[7]
 set_location_assignment PIN_C10 -to VGA_SYNC_N
 set_location_assignment PIN_D11 -to VGA_VS
-set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
-set_global_assignment -name CYCLONEII_RESERVE_NCEO_AFTER_CONFIGURATION "USE AS REGULAR IO"
-set_global_assignment -name VHDL_FILE kbd_alphanum_board.vhd
-set_global_assignment -name VHDL_FILE kbd_alphanum.vhd
-set_global_assignment -name VHDL_FILE ps2_iobase.vhd
-set_global_assignment -name VHDL_FILE kbdex_ctrl.vhd
-set_global_assignment -name VHDL_FILE bin2hex.vhd
-set_global_assignment -name VHDL_FILE code_to_asci.vhd
-set_global_assignment -name VECTOR_WAVEFORM_FILE kbd_alphanum.vwf
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VHDL_FILE is_num.vhd
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
