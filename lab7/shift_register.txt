@@ -1,0 +1,3 @@
+Ao utilizar uma chave switch para o clock ao invés do push button observa-se que para as funcoes de right shift e left shift serial, o bit que estava sendo passado pela entrada serial era passado muito rapidamente para todos os bits da saida. 
+Isto ocorre pois os switches nesta placa FPGA não são debounced, ou seja, se há variações infinitesimais de sinal, todas são transimitidas para a FPGA. Por isso ao acionar a switch todos os valores da saída sao preenchidos com o valor da entrada serial, pois provavelmente há muitas variações de sinal no tempo que demoramos para fisicamente ligar ou desligar a switch.
+O load paralelo síncrono não é afetado pois o sinal de entrada paralela é somente passado repetidas vezes para a saída quando há bouncing no chaveamento do clock.
