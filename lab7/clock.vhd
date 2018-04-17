@@ -42,16 +42,22 @@ begin
 	begin
 		if rising_edge(clk) then
 			if set_hour = '1' then
-				tmp_hd := decimal;
-				tmp_hu := unity;
+				if (decimal = 2 AND unity < 4) OR (decimal < 2) then
+					tmp_hd := decimal;
+					tmp_hu := unity;
+				end if;
 			end if;
 			if set_minute = '1' then
-				tmp_md := decimal;
-				tmp_mu := unity;
+				if decimal < 6 then 
+					tmp_md := decimal;
+					tmp_mu := unity;
+				end if;
 			end if;
 			if set_second = '1' then
-				tmp_sd := decimal;
-				tmp_su := unity;
+				if decimal < 6 then
+					tmp_sd := decimal;
+					tmp_su := unity;
+				end if;
 			end if;
 			if clk_hz = '1' then
 				if tmp_su = "1001" then

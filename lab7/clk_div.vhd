@@ -8,28 +8,22 @@ entity clk_div is
   );
 end clk_div;
 
-architecture behavioral of clk_div is
+architecture bhv of clk_div is
+	signal count: integer := 1;
+	signal hz1: std_logic := '0';
 begin
-	process (clk)
-		constant divider: integer := 50000000; -- each 50M clock cycles toggle clk_hz (pulse each 1 second)
-		variable count: integer range 0 to divider := 0;
-		variable hz: std_logic := '0';
-		variable wid: std_logic := '0'; -- controll the width of the 1 Hz pulse
+	process(clk)
+		constant divider : integer := 50000000;
 	begin
 		if rising_edge(clk) then
+			count <= count + 1;
 			if count = divider then
-				hz := not(hz);
-				count := 0;
-			end if;
-			count := count + 1;
-		end if;
-		if falling_edge(clk) then
-			if hz = '1' then -- if the 1 Hz pulse is up and the clock is falling, cut the pulse
-				wid := '1';
-			else
-				wid := '0';
+				hz1 <= '1';
+				count <= 1;
+			else 
+				hz1 <= '0';
 			end if;
 		end if;
-		clk_hz <= hz XOR wid; -- limit the pulso of hz to be the width of the clk
 	end process;
-end behavioral;
+	clk_hz <= hz1;
+end bhv;
