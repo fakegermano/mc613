@@ -27,6 +27,7 @@
 
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
 
 entity vga_ball is
   port (    
@@ -49,7 +50,6 @@ architecture comportamento of vga_ball is
   signal we : std_logic;                        -- write enable ('1' p/ escrita)
   signal addr : integer range 0 to 12287;       -- endereco mem. vga
   signal pixel : std_logic_vector(2 downto 0);  -- valor de cor do pixel
-  signal pixel_bit : std_logic;                 -- um bit do vetor acima
 
   -- Sinais dos contadores de linhas e colunas utilizados para percorrer
   -- as posições da memória de vídeo (pixels) no momento de construir um quadro.
@@ -90,9 +90,10 @@ architecture comportamento of vga_ball is
   signal timer_rstn, timer_enable : std_logic;
   
   signal sync, blank: std_logic;
-
+  signal ball_pixel: std_logic_vector(2 downto 0) := "111";
+  signal atualiza_pixel: std_logic;
+  signal trocou_dir_x, trocou_dir_y: std_logic;
 begin  -- comportamento
-
 
   -- Aqui instanciamos o controlador de vídeo, 128 colunas por 96 linhas
   -- (aspect ratio 4:3). Os sinais que iremos utilizar para comunicar
@@ -190,16 +191,19 @@ begin  -- comportamento
     if rstn = '0' then                  -- asynchronous reset (active low)
       pos_x <= 0;
     elsif CLOCK_50'event and CLOCK_50 = '1' then  -- rising clock edge
-      if atualiza_pos_x = '1' then
+	   trocou_dir_x <= '0';
+		if atualiza_pos_x = '1' then  
         if direcao = direita then         
           if pos_x = 127 then
-            direcao := esquerda;  
+            direcao := esquerda;
+				trocou_dir_x <= '1';
           else
             pos_x <= pos_x + 1;
           end if;        
         else  -- se a direcao é esquerda
           if pos_x = 0 then
             direcao := direita;
+				trocou_dir_x <= '1';
           else
             pos_x <= pos_x - 1;
           end if;
@@ -220,16 +224,19 @@ begin  -- comportamento
     if rstn = '0' then                  -- asynchronous reset (active low)
       pos_y <= 0;
     elsif CLOCK_50'event and CLOCK_50 = '1' then  -- rising clock edge
+		trocou_dir_y <= '0';
       if atualiza_pos_y = '1' then
         if direcao = desce then         
           if pos_y = 95 then
-            direcao := sobe;  
+            direcao := sobe;
+				trocou_dir_y <= '1';
           else
             pos_y <= pos_y + 1;
           end if;        
         else  -- se a direcao é para subir
           if pos_y = 0 then
             direcao := desce;
+				trocou_dir_y <= '1';
           else
             pos_y <= pos_y - 1;
           end if;
@@ -245,9 +252,38 @@ begin  -- comportamento
   -- indicam o endereço do pixel sendo escrito para o quadro atual, casam com a
   -- posição da bola (sinais pos_x e pos_y). Caso contrário,
   -- o pixel é preto.
-
-  pixel_bit <= '1' when (col = pos_x) and (line = pos_y) else '0';
-  pixel <= (others => pixel_bit);
+  
+  paintball: process (CLOCK_50, rstn)
+  begin
+		if rstn = '0' then
+			ball_pixel <= "111";
+		elsif rising_edge(CLOCK_50) then
+		  if atualiza_pos_x = '0' AND atualiza_pos_y = '0' then
+		    if trocou_dir_x = '1' OR trocou_dir_y = '1' then 
+			   ball_pixel <= ball_pixel - '1';
+		    end if;
+		  end if;
+		  if ball_pixel = "000" then
+		    ball_pixel <= "111";
+		  end if;
+		end if;
+  end process paintball;
+	
+	atualiza_pixel <= '1' when (col = pos_x) AND (line = pos_y) else '0';
+  
+	put_color: process (rstn) 
+	begin
+		if rstn = '0' then
+			pixel <= "000";
+		else
+			if col = pos_x AND line = pos_y then
+				pixel <= ball_pixel;
+			else 
+				pixel <= "000";
+			end if;
+		end if;
+	end process put_color;
+  
   
   -- O endereço de memória pode ser construído com essa fórmula simples,
   -- a partir da linha e coluna atual
@@ -293,7 +329,7 @@ begin  -- comportamento
                              line_enable    <= '1';
                              col_rstn       <= '1';
                              col_enable     <= '1';
-                             we             <= '1';
+                             we             <= atualiza_pixel;
                              timer_rstn     <= '0'; 
                              timer_enable   <= '0';
 
@@ -308,16 +344,20 @@ begin  -- comportamento
                              timer_rstn     <= '0'; 
                              timer_enable   <= '0';
 
-      when others         => proximo_estado <= inicio;
-                             atualiza_pos_x <= '0';
-                             atualiza_pos_y <= '0';
-                             line_rstn      <= '1';
-                             line_enable    <= '0';
-                             col_rstn       <= '1';
-                             col_enable     <= '0';
-                             we             <= '0';
-                             timer_rstn     <= '1'; 
-                             timer_enable   <= '0';
+      when others         =>	if fim_escrita = '1' then
+											proximo_estado <= inicio;
+										else
+											proximo_estado <= show_splash;
+										end if;
+										atualiza_pos_x <= '0';
+										atualiza_pos_y <= '0';
+										line_rstn      <= '1';
+										line_enable    <= '1';
+										col_rstn       <= '1';
+										col_enable     <= '1';
+										we             <= '1';
+										timer_rstn     <= '0'; 
+										timer_enable   <= '0';
       
     end case;
   end process logica_mealy;
@@ -329,7 +369,7 @@ begin  -- comportamento
   seq_fsm: process (CLOCK_50, rstn)
   begin  -- process seq_fsm
     if rstn = '0' then                  -- asynchronous reset (active low)
-      estado <= inicio;
+      estado <= show_splash;
     elsif CLOCK_50'event and CLOCK_50 = '1' then  -- rising clock edge
       estado <= proximo_estado;
     end if;
