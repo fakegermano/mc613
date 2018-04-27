@@ -1,0 +1,3 @@
+[submodule "vector-racing"]
+	path = vector-racing
+	url = git@github.com:fakegermano/vector-racing.git

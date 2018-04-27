@@ -17,6 +17,7 @@ begin
 		if rising_edge(clock) then
 			if reset = '1' then
 				s <= A;
+				z <= '0';
 			else
 				case s is
 					when A =>
